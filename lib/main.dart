@@ -18,11 +18,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -36,9 +31,6 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
     });
   }
@@ -48,26 +40,39 @@ class _MyHomePageState extends State<MyHomePage> {
     // This method is rerun every time setState is called.
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+        title: Text(
+          widget.title,
+          style: TextStyle(
+            color: Colors.black45
+          ),
         ),
+        backgroundColor: Colors.white70,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      body: _buildHabits(),
+    );
+  }
+
+  Widget _buildHabits() {
+    return _buildHabit('Eat at home');
+  }
+
+  Widget _buildHabit(String habitName) {
+    return Card(
+      child: ListTile(
+        leading: Icon(
+          Icons.fastfood,
+          color: Colors.red[300],
+          size: 30.0
+        ),
+        title: Text(habitName),
+        subtitle: Text('0 day streak'),
+        trailing: FlatButton(
+          onPressed: _incrementCounter,
+          child: Text(
+            '$_counter',
+            style: Theme.of(context).textTheme.display1,
+          ),
+        ),
       ),
     );
   }
