@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'add.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -38,8 +39,12 @@ class _MyHomePageState extends State<MyHomePage> {
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               color: Colors.black45,
-              onPressed: () {
-                _addHabit();
+              onPressed: () async {
+                final HabitWidget habit = await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AddHabitForm())
+                );
+                _addHabit(habit);
               },
             ),
         ]
@@ -48,16 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void _addHabit() {
+  void _addHabit(HabitWidget habit) {
     setState(() {
-      habits.add(
-        HabitWidget(
-          title: "I'm a habit",
-          counter: 0,
-          streak: 0,
-          streakUnit: "day",
-        )
-      );
+      habits.add(habit);
     });
   }
 
