@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () async {
                 final HabitWidget habit = await Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AddHabitForm())
+                  MaterialPageRoute(builder: (context) => AddHabit())
                 );
                 _addHabit(habit);
               },
